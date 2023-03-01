@@ -25,13 +25,14 @@ class sessionAuthError(Exception):
 def authCheck(auth):
     data = {"what": "redisplayLoginScreen"}
     try:
-        r = requests.post(url, data=data)
+        r = requests.post(url, data=data, cookies=auth)
     except requests.exceptions.ConnectionError:
         raise connectionFailed()
-    substring = '<caption><img src="images/school_logo.png?v=2" /></caption>   '
-    if substring in r.text:
+    substring1 = '<caption><img src="images/school_logo.png?v=2" /></caption>'
+    substring2 = '<strong>Sessions Active For   ()</strong></div>'
+    if substring1 in r.text or substring2 in r.text:
         return False
-
+    print(r.text)
     return True
 
 
@@ -46,8 +47,9 @@ def auth(username, password):
         r = s.post(url, data=data)
     except requests.exceptions.ConnectionError:
         raise connectionFailed()
-    substring = '<caption><img src="images/school_logo.png?v=2" /></caption>   '
-    if substring in r.text:
+    substring1 = '<caption><img src="images/school_logo.png?v=2" /></caption>'
+    substring2 = '<div class="tblHeader"><strong>Sessions Active For   ()</strong></div>'
+    if substring1 in r.text or substring2 in r.text:
         raise loginIncorrectErr()
 
     return s.cookies.get_dict()
@@ -62,8 +64,9 @@ def getInfo(auth):
         r = requests.post(url, data=data, cookies=auth)
     except requests.exceptions.ConnectionError:
         raise connectionFailed()
-    substring = '<caption><img src="images/school_logo.png?v=2" /></caption>   '
-    if substring in r.text:
+    substring1 = '<caption><img src="images/school_logo.png?v=2" /></caption>'
+    substring2 = '<div class="tblHeader"><strong>Sessions Active For   ()</strong></div>'
+    if substring1 in r.text or substring2 in r.text:
         raise sessionAuthError()
 
     resToJSON = html_to_json.convert(r.text)
@@ -103,8 +106,9 @@ def addClass(auth, classid):
         r = requests.post(url, data=data, cookies=auth)
     except requests.exceptions.ConnectionError:
         raise connectionFailed()
-    substring = '<caption><img src="images/school_logo.png?v=2" /></caption>   '
-    if substring in r.text:
+    substring1 = '<caption><img src="images/school_logo.png?v=2" /></caption>'
+    substring2 = '<div class="tblHeader"><strong>Sessions Active For   ()</strong></div>'
+    if substring1 in r.text or substring2 in r.text:
         raise sessionAuthError()
     return
 
@@ -122,8 +126,9 @@ def removeClass(auth, classid):
         r = requests.post(url, data=data, cookies=auth)
     except requests.exceptions.ConnectionError:
         raise connectionFailed()
-    substring = '<caption><img src="images/school_logo.png?v=2" /></caption>   '
-    if substring in r.text:
+    substring1 = '<caption><img src="images/school_logo.png?v=2" /></caption>'
+    substring2 = '<div class="tblHeader"><strong>Sessions Active For   ()</strong></div>'
+    if substring1 in r.text or substring2 in r.text:
         raise sessionAuthError()
     return
 
@@ -141,8 +146,9 @@ def getEnrolledClasses(auth):
         r = requests.post(url, data=data, cookies=auth)
     except requests.exceptions.ConnectionError:
         raise connectionFailed()
-    substring = '<caption><img src="images/school_logo.png?v=2" /></caption>   '
-    if substring in r.text:
+    substring1 = '<caption><img src="images/school_logo.png?v=2" /></caption>'
+    substring2 = '<div class="tblHeader"><strong>Sessions Active For   ()</strong></div>'
+    if substring1 in r.text or substring2 in r.text:
         raise sessionAuthError()
     resToJSON = html_to_json.convert(r.text)
 
@@ -190,8 +196,9 @@ def getAllClasses(auth):
         r = requests.post(url, data=data, cookies=auth)
     except requests.exceptions.ConnectionError:
         raise connectionFailed()
-    substring = '<caption><img src="images/school_logo.png?v=2" /></caption>   '
-    if substring in r.text:
+    substring1 = '<caption><img src="images/school_logo.png?v=2" /></caption>'
+    substring2 = '<div class="tblHeader"><strong>Sessions Active For   ()</strong></div>'
+    if substring1 in r.text or substring2 in r.text:
         raise sessionAuthError()
     resToJSON = html_to_json.convert(r.text)
 
@@ -236,8 +243,9 @@ def shiftWeekUp(auth):
         r = requests.post(url, data=data, cookies=auth)
     except requests.exceptions.ConnectionError:
         raise connectionFailed()
-    substring = '<caption><img src="images/school_logo.png?v=2" /></caption>   '
-    if substring in r.text:
+    substring1 = '<caption><img src="images/school_logo.png?v=2" /></caption>'
+    substring2 = '<div class="tblHeader"><strong>Sessions Active For   ()</strong></div>'
+    if substring1 in r.text or substring2 in r.text:
         raise sessionAuthError()
 
 
@@ -253,6 +261,7 @@ def shiftWeekDown(auth):
         r = requests.post(url, data=data, cookies=auth)
     except requests.exceptions.ConnectionError:
         raise connectionFailed()
-    substring = '<caption><img src="images/school_logo.png?v=2" /></caption>   '
-    if substring in r.text:
-        raise sessionAuthError()   
+    substring1 = '<caption><img src="images/school_logo.png?v=2" /></caption>'
+    substring2 = '<div class="tblHeader"><strong>Sessions Active For   ()</strong></div>'
+    if substring1 in r.text or substring2 in r.text:
+        raise sessionAuthError()  
