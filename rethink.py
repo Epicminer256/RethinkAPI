@@ -32,7 +32,6 @@ def authCheck(auth):
     substring2 = '<strong>Sessions Active For   ()</strong></div>'
     if substring1 in r.text or substring2 in r.text:
         return False
-    print(r.text)
     return True
 
 
