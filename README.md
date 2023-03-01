@@ -42,7 +42,7 @@ The code above is very prone to fail overtime due to the lack of error checking.
 ```
 try:
     # Attempt using Rethink API
-	# Example: auth = rethink.auth("username", "password") 
+    # Example: auth = rethink.auth("username", "password") 
 except rethink.loginIncorrectErr:
     # Handle incorrect login details exceptions (only applies to rethink.auth)
 except rethink.connectionFailed:
@@ -168,7 +168,7 @@ Which will return this array if the login was correct and if there is a internet
         "lastname": "LAST",
         "classid": "11111"
     },
-	... typically would be allot of classes in this list
+    ... typically would be allot of classes in this list
 ]
 ```
 
@@ -429,7 +429,7 @@ And the output
         "lastname": "LAST",
         "classid": "11111"
     },
-	... typically would be allot of classes in this list
+    ... typically would be allot of classes in this list
 ]
 What class do you want to add?
 Class ID> 11111
