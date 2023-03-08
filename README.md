@@ -8,10 +8,6 @@ A python API for interfacing with Rethink
 
 To install the dependency used, `pip install html-to-json requests`
 
-### Setup target URL (Don't forget)
-
-From rethink.py, replace `url=''` with `url='(Your url here)'`. The API will not work without this.
-
 ## Using the API
 
 ### Importing into your code
@@ -27,6 +23,8 @@ Example:
 
 ```
 import rethink
+
+rethink.url = "(YOUR URL HERE)"
 
 auth = rethink.auth("username", "password")
 
@@ -66,6 +64,8 @@ Here is a example with error detection
 ```
 import rethink
 import json
+
+rethink.url = "(YOUR URL HERE)"
 
 # Log into rethink and then get our Auth Token
 try:
@@ -130,6 +130,8 @@ Here is a example with error detection
 import rethink
 import json
 
+rethink.url = "(YOUR URL HERE)"
+
 # Log into rethink and then get our Auth Token
 try:
     auth = rethink.auth("username", "password")
@@ -185,6 +187,8 @@ Using the code from the example above that was used for listing currently enroll
 ```
 import rethink
 import json
+
+rethink.url = "(YOUR URL HERE)"
 
 # Log into rethink and then get our Auth Token
 try:
@@ -255,6 +259,8 @@ The function rethink.getInfo only takes a Auth Token as a argument and returns t
 import rethink
 import json
 
+rethink.url = "(YOUR URL HERE)"
+
 # Log into rethink and then get our Auth Token
 try:
     auth = rethink.auth("username", "password")
@@ -298,6 +304,8 @@ Here is a example where the user can select what class to remove
 ```
 import rethink
 import json
+
+rethink.url = "(YOUR URL HERE)"
 
 # Log into rethink and then get our Auth Token
 try:
@@ -374,6 +382,8 @@ And for adding a class
 ```
 import rethink
 import json
+
+rethink.url = "(YOUR URL HERE)"
 
 # Log into rethink and then get our Auth Token
 try:
@@ -452,6 +462,8 @@ import json
 import random
 import string
 
+rethink.url = "(YOUR URL HERE)"
+
 # Type a random string here to test if the auth check returns False
 fake_auth = {
     'PHPSESSID': "".join(random.choices(string.ascii_lowercase, k=15))
@@ -459,7 +471,7 @@ fake_auth = {
 
 # Log into rethink and then get our Auth Token
 try:
-    auth = rethink.auth("***REMOVED***", "p***REMOVED***")
+    auth = rethink.auth("username", "password")
 except rethink.loginIncorrectErr:
     print("Your username or password is incorrect")
     exit()
